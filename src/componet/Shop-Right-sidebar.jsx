@@ -14,6 +14,7 @@ import Styl2 from "../image/Styl2.jpg"
 import Styl5 from "../image/Styl5.jpg"
 import image13 from "../image/13.jpg"
 import image11 from "../image/11.jpg"
+import image17 from "../image/17.jpg"
 import image12 from "../image/12.jpg"
 
 const ShopRightsidebar = () => {
@@ -87,7 +88,7 @@ const ShopRightsidebar = () => {
                                             <Card className="p-3 mt-5" style={{ width: '13rem' }}>
 
                                                 <div className="position-relative">
-                                                    <Card.Img variant="top" src="/src/image/17.jpg" className="border rounded-3" />
+                                                    <Card.Img variant="top" src={image17} className="border rounded-3" />
                                                 </div>
 
                                                 <Card.Body className="text-center">

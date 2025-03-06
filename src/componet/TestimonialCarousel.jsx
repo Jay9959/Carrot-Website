@@ -1,97 +1,264 @@
-import Slider from "react-slick";
-import { Card, Container } from "react-bootstrap";
+import { Carousel, Col, Container, Row } from "react-bootstrap";
 
 // image import 
 
-import image12 from "../image/1 (2).jpg"
+import ima12 from "../image/1 (2).jpg"
 import TestimonialCarousel1 from "../image/TestimonialCarousel1.jpg"
 import TestimonialCarousel2 from "../image/TestimonialCarouse2.jpg"
-
-const testimonials = [
-    {
-        name: "Stephen Smith",
-        role: "Co Founder",
-        feedback: "eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.",
-        stars: 5,
-        image: {image12},
-    },
-    {
-        name: "Lorem Robinson",
-        role: "Manager",
-        feedback: "eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.",
-        stars: 4,
-        image: {TestimonialCarousel1},
-    },
-    {
-        name: "Saddika Alard",
-        role: "Team Leader",
-        feedback: "eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.",
-        stars: 5,
-        image: {TestimonialCarousel2},
-    },
-];
+import { FaRegStar, FaStar } from "react-icons/fa";
+import { useState } from "react";
 
 const TestimonialCarousel = () => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                },
-            },
-        ],
-    };
 
-    const renderStars = (count) => {
-        return Array.from({ length: 5 }, (_, index) => (
-            <span key={index} style={{ color: index < count ? "#FFA500" : "#ddd" }}>
-                ★
-            </span>
-        ));
-    };
+    const [index, setIndex] = useState(0);
+
+    const handleSelect = (selectedIndex) => {
+        setIndex(selectedIndex);
+    }
 
     return (
         <>
-            <Container>
-                <div data-aos="fade-up" data-aos-duration="5000" className="mt-5 textimonialcarousel-text-img">
-                    <h2 className="text-center mb-4">Great Words From People</h2>
-                    <p className="text-center text-muted mb-4">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore lacus vel facilisis.
-                    </p>
-                    <Slider {...settings}>
-                        {testimonials.map((testimonial, index) => (
-                            <div key={index}>
-                                <Card className="text-center p-4 textimonialcarousel-contant">
-                                    <Card.Img
-                                        variant="top"
-                                        src={testimonial.image}
-                                        className="rounded-circle mx-auto"
-                                        style={{ width: "100px", height: "100px", objectFit: "cover" }}
-                                    />
-                                    <Card.Body>
-                                        <Card.Title className="mt-3">{testimonial.name}</Card.Title>
-                                        <Card.Subtitle className="text-muted mb-3">
-                                            {testimonial.role}
-                                        </Card.Subtitle>
-                                        <Card.Text>{testimonial.feedback}</Card.Text>
-                                        <div>{renderStars(testimonial.stars)}</div>
-                                    </Card.Body>
-                                </Card>
+            <section className='section-testimonial position-relative mt-5'>
+                <Container>
+                    <Row>
+                        <div className="col-lg-12">
+                            <div className='mb-30'>
+                                <div className="cr-banner">
+                                    <h2>Great Words From People</h2>
+                                </div>
+                                <div className="cr-banner-sub-title">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore lacus vel facilisis. </p>
+                                </div>
                             </div>
-                        ))}
-                    </Slider>
-                </div>
-            </Container>
+                        </div>
+                    </Row>
+                    <Row>
+                        <div className="col-lg-12">
+                            <div className="swiper-container">
+                                <div className="swiper-wrapper cr-testimonial-pt-50">
+                                    <Carousel activeIndex={index} onSelect={handleSelect}>
+                                        <Carousel.Item>
+                                            <Row>
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel1} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Co Founder</span>
+                                                                <h4 className="title">Stephen Smith</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel2} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Manager</span>
+                                                                <h4 className="title">Lorem Robinson</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaRegStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={ima12} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Team Leader</span>
+                                                                <h4 className="title">Saddika Alard</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”</p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Carousel.Item>
+
+                                        <Carousel.Item>
+                                            <Row>
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel1} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Co Founder</span>
+                                                                <h4 className="title">Stephen Smith</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel2} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Manager</span>
+                                                                <h4 className="title">Lorem Robinson</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaRegStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={ima12} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Team Leader</span>
+                                                                <h4 className="title">Saddika Alard</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”</p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Carousel.Item>
+
+                                        <Carousel.Item>
+                                            <Row>
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel1} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Co Founder</span>
+                                                                <h4 className="title">Stephen Smith</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={TestimonialCarousel2} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Manager</span>
+                                                                <h4 className="title">Lorem Robinson</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”
+                                                                </p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaRegStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+
+                                                <Col md={4} className='my-5'>
+                                                    <div className='swiper-slide'>
+                                                        <div className="cr-testimonial">
+                                                            <div className="cr-testimonial-image position-absolute d-flex justify-content-center align-items-center">
+                                                                <img src={ima12} />
+                                                            </div>
+                                                            <div className="cr-testimonial-inner">
+                                                                <span>Team Leader</span>
+                                                                <h4 className="title">Saddika Alard</h4>
+                                                                <p>“eiusmpsu dolor sit amet, conse cte tur ng elit, sed do eiusmod tem lacus vel facilisis.”</p>
+                                                                <div className="cr-star">
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                    <FaStar className='star' />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Carousel.Item>
+                                    </Carousel>
+                                </div>
+                            </div>
+                        </div>
+                    </Row>
+                </Container>
+            </section>
         </>
     );
 };
